@@ -16,7 +16,7 @@ Module.register("MMM-NOAA-Forecast", {
 		tempGraph: {
 			height: 400,
 			width: 600,
-			hours: 15,
+			hours: 24,
 			verticalMultiplier: 200
 		},
 		apiBase: "https://api.weather.gov/",
@@ -56,9 +56,9 @@ Module.register("MMM-NOAA-Forecast", {
 
 
 			var divGraphBars = document.createElement("div");
-			divGraphBars.classList.add("MMM-NOAA-Forecast-GraphBars");
-			divGraphBars.style.width = this.config.tempGraph.width;
-			divGraphBars.style.height = this.config.tempGraph.height;
+			divGraphBars.classList.add("MMM-NOAA-Forecast-Graph");
+			//divGraphBars.style.width = this.config.tempGraph.width;
+			//divGraphBars.style.height = this.config.tempGraph.height;
 
 			var maxTemp = Number.MIN_SAFE_INTEGER;
 			var minTemp = Number.MAX_SAFE_INTEGER;
@@ -84,7 +84,17 @@ Module.register("MMM-NOAA-Forecast", {
 				var divGraphBarText = document.createElement("div");
 				divGraphBarText.classList.add("MMM-NOAA-Forecast-GraphBarText");
 				divGraphBarText.classList.add("xsmall");
-				divGraphBarText.innerHTML = this.forecast.properties.periods[i].temperature + " - " + moment(this.forecast.properties.periods[i].startTime).format("hA");
+
+				var divGraphBarTextTemp = document.createElement("div");
+				divGraphBarTextTemp.classList.add("MMM-NOAA-Forecast-GraphBarTextTemp");
+				divGraphBarTextTemp.innerHTML = this.forecast.properties.periods[i].temperature;
+				divGraphBarText.appendChild(divGraphBarTextTemp);
+
+				var divGraphBarTextTime = document.createElement("div");
+				divGraphBarTextTime.classList.add("MMM-NOAA-Forecast-GraphBarTextTime");
+				divGraphBarTextTime.innerHTML = moment(this.forecast.properties.periods[i].startTime).format("hA");
+				divGraphBarText.appendChild(divGraphBarTextTime);
+
 				divGraphBar.appendChild(divGraphBarText);
 
 				divGraphBars.appendChild(divGraphBar);
