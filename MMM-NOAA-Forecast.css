@@ -1,0 +1,16 @@
+.MMM-NOAA-Forecast-GraphBars {
+	align-items: flex-end;
+	display:flex;
+	flex-direction: row;
+	border-color: white;
+	border: solid;
+	flex-grow: 1;
+}
+.MMM-NOAA-Forecast-GraphBar {
+	flex-grow: 1;
+	border: solid 1px;
+	border-color: red;
+}
+.MMM-NOAA-Forecast-GraphBarText {
+	writing-mode: vertical-rl;
+}
